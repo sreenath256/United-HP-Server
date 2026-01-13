@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const ContactEnquiry = require("../../model/ContactEnquiry");
+const ContactEnquiry = require("../../model/contactEnquiry");
 
 const getAllContactEnquiries = async (req, res) => {
     try {
