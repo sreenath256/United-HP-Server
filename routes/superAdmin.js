@@ -10,6 +10,13 @@ const { getEnquiriesById, getEnquiryById, getAllPendingEnquiries } = require("..
 const { getPendingEnquiries, getAllEnquiries } = require("../controllers/dealer/dealerController");
 const { getStates, createState, updateState, deleteState } = require("../controllers/admin/stateController");
 const { getProducts, getSingleProduct, updateProduct, newProduct, deleteProduct } = require("../controllers/admin/productController");
+const {
+    getAllCorporateEnquiries,
+    getCorporateEnquiryById,
+    deleteCorporateEnquiry,
+    getPendingCorporateEnquiries
+} = require("../controllers/superAdmin/CorporateEnquiryController");
+const { getAllContactEnquiries, getContactEnquiryById, getPendingContactEnquiries } = require("../controllers/superAdmin/ContactEnquiry");
 
 
 
@@ -76,6 +83,18 @@ router.get("/all-pending-enquiries", getAllPendingEnquiries)
 router.get("/enquiries/:id", getEnquiriesById)
 router.get("/pending-enquiries/:id", getPendingEnquiries)
 router.get("/enquiry/:id", getEnquiryById)
+
+router.get("/corporate-enquiries", getAllCorporateEnquiries)
+router.get("/corporate-enquiries/:id", getCorporateEnquiryById)
+router.get("/corporate-pending-enquiries/:id", getPendingCorporateEnquiries)
+router.get("/corporate-enquiry/:id", getCorporateEnquiryById)
+
+router.get("/contact-enquiries", getAllContactEnquiries)
+router.get("/contact-enquiries/:id", getContactEnquiryById)
+router.get("/contact-pending-enquiries/:id", getPendingContactEnquiries)
+router.get("/contact-enquiry/:id", getContactEnquiryById)
+
+
 
 
 

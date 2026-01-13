@@ -1,6 +1,8 @@
 const User = require("../model/userModel");
 const jwt = require("jsonwebtoken");
 const mongoose = require("mongoose");
+const CorporateEnquiry = require("../model/corporateEnquiry");
+const ContactEnquiry = require("../model/ContactEnquiry");
 
 const createToken = (_id, role, permissions) => {
   return jwt.sign({ _id, role, permissions }, process.env.SECRET, { expiresIn: "1d" });
@@ -113,7 +115,7 @@ const editUser = async (req, res) => {
       }
       return data;
     };
-    
+
     // Use this in your controller
     let formData = sanitizeInput(req.body);
 
@@ -175,6 +177,71 @@ const changePassword = async (req, res) => {
   }
 };
 
+
+const createCorporateEnquiry = async (req, res) => {
+  try {
+    const {
+      institutionName,
+      contactPerson,
+      mobileNumber,
+      email,
+      district,
+      productCategory,
+      quantityRequired,
+      briefRequirement,
+    } = req.body;
+
+    const enquiry = await CorporateEnquiry.create({
+      institutionName,
+      contactPerson,
+      mobileNumber,
+      email,
+      district,
+      productCategory,
+      quantityRequired,
+      briefRequirement,
+    });
+
+    res.status(200).json(enquiry);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
+
+
+
+const createContactEnquiry = async (req, res) => {
+  try {
+    console.log(req.body);
+    const {
+      name,
+      contactPerson,
+      mobileNumber,
+      email,
+      city,
+      category,
+    } = req.body;
+
+    const enquiry = await ContactEnquiry.create({
+      name,
+      contactPerson,
+      mobileNumber,
+      email,
+      city,
+      category,
+    });
+
+    res.status(200).json(enquiry);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
+
+
+
+
 module.exports = {
   getUserDataFirst,
   signUpUser,
@@ -182,4 +249,6 @@ module.exports = {
   logoutUser,
   editUser,
   changePassword,
+  createCorporateEnquiry,
+  createContactEnquiry
 };

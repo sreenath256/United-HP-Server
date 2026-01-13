@@ -1,6 +1,6 @@
 const express = require("express");
 const upload = require("../middleware/upload");
-const { getUserDataFirst, logoutUser, changePassword, editUser } = require("../controllers/userController");
+const { getUserDataFirst, logoutUser, changePassword, editUser, createCorporateEnquiry, createContactEnquiry } = require("../controllers/userController");
 const { getDealers, getCities, getDistricts, getStore, nearByDealers, readBanners } = require("../controllers/user/dealerController");
 const { createEnquiry } = require("../controllers/user/enquiryController");
 const { getProducts } = require("../controllers/user/productController");
@@ -34,6 +34,10 @@ router.get("/banners", readBanners)
     
 
 router.post("/enquiry", createEnquiry)
+
+router.post("/corporate-enquiry", createCorporateEnquiry)
+
+router.post("/contact-enquiry", createContactEnquiry)
 
 
 module.exports = router;
