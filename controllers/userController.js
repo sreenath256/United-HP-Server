@@ -2,7 +2,7 @@ const User = require("../model/userModel");
 const jwt = require("jsonwebtoken");
 const mongoose = require("mongoose");
 const CorporateEnquiry = require("../model/corporateEnquiry");
-const ContactEnquiry = require("../model/ContactEnquiry");
+const ContactEnquiry = require("../model/contactEnquiry");
 
 const createToken = (_id, role, permissions) => {
   return jwt.sign({ _id, role, permissions }, process.env.SECRET, { expiresIn: "1d" });
